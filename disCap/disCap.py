@@ -6,6 +6,7 @@ import numpy as np
 import pandas as pd
 
 def get_stock_data(symbol,duration):
+    # returns df for last yahoo fiance data for stock with symbol
     def mkdays(val):
         return val.days
     def mkdaystr(val):
