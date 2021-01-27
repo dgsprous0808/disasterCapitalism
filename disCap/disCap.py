@@ -6,6 +6,16 @@ import numpy as np
 import pandas as pd
 
 def get_stock_data(symbol,duration):
+    '''
+    for stock with sticker symbol, retrieve closing data for days in duration, return as a dataframe
+
+    Parameters:
+        symbol (string): stock symbol
+        duration (string): specifies days to look backwards.  Example: '180d', specifies 180 days.
+    Returns:
+        df (dataframe): dataframe of form ['Date','Symbol','Close','Volume']
+
+    '''
     def mkdays(val):
         return val.days
     def mkdaystr(val):
@@ -20,7 +30,13 @@ def get_stock_data(symbol,duration):
     # df = df[['Date','Company','Close','Volume']]
     return df
 
-def add_instestments(df,investments,symbol):
+def add_investments(df,investments,symbol):
+    '''
+    df is a dataframe of yahoo-finance data of form ['Date','Symbol','Close','Volume'] for some duration.
+    symbol is the stock symbol of interest
+    this function pairs investments made with dates in the the dataframe and returns new dataframe with additional
+    field ['Date','Symbol','Close','Volume','value','shares','gain','spent']
+    '''
     df['shares'] = 0.00
     df['spent'] = 0.00
     df['gain'] = 0.00
@@ -31,8 +47,21 @@ def add_instestments(df,investments,symbol):
            df.loc[( (df['shares']>0.00) ),'value']/df.loc[( (df['shares']>0.00) ),'spent']
     return df
 
-# This creates a plot with two axis.  One is value invested
+def create_invested(invested,df):
+    ''' Called from add_investments, adds specific investment instances starting at appropriate data'''
+    df.loc[( (df.Daystring>=invested[0]) ),'shares'] = \
+        df.loc[( (df.Daystring>=invested[0]) ),'shares'] + invested[2]
+    df.loc[( (df.Daystring>=invested[0]) ),'spent'] = \
+        df.loc[( (df.Daystring>=invested[0]) ),'spent'] + invested[1]
+    return df
+
+
 def doubleplot_(df, showeach, title_string, window):
+    '''
+    for a df created by add_investments, create two figures:
+    Top:  Value Owned [blue dots] and invested [green dots] as function of dates
+    Bottom:  Close stock price as function of dates
+    '''
     x = df.Days
 
     fig, ax1 = plt.subplots()
@@ -105,13 +134,6 @@ def findwindowave(values, window):
             right = k + window
         windowave.append( np.average( values[left:right] ) )
     return windowave
-
-def create_invested(invested,df):
-    df.loc[( (df.Daystring>=invested[0]) ),'shares'] = \
-        df.loc[( (df.Daystring>=invested[0]) ),'shares'] + invested[2]
-    df.loc[( (df.Daystring>=invested[0]) ),'spent'] = \
-        df.loc[( (df.Daystring>=invested[0]) ),'spent'] + invested[1]
-    return df
 
 def rgb_gain(gain, mingain, green_point, maxgain):
     ''' Returns a list of rgb tupples, that go from red to yellow then green to blue
