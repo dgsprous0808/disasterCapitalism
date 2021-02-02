@@ -1,35 +1,37 @@
+# 'symbol': {'area':'US-example', 'sector': 'Tech, Security'}
 stock_description = {
     'OKTA':{'area':'US','sector':'Tech, Security'}
     ,'AMZN':{'area':'US','sector':'Virtual Marketplace, Cloud Services'}
     ,'APPN':{'area':'US','sector':'Tech, Business Processes'}
     ,'WORK':{'area':'US','sector':'Tech, Business Communications'}
-    ,'ALB':{'area':'US','sector':'Li Mining, Specialty Chemicals'}
+    ,'ALB':{'area':'US','sector':'Li Mining, Specialty Chemicals, Battery'}
     ,'ADBE':{'area':'US','sector':'Tech, Creative'}
     ,'ESTC':{'area':'US','sector':'Tech, DB'}
     ,'GOOGL':{'area':'US','sector':'Tech, ecclectic'}
-    ,'SQM':{'area':'Latin America','sector':'Li Mining, Specialty Chemicals'}
-    ,'LTHM':{'area':'US','sector':'Li Battery'}
+    ,'SQM':{'area':'Latin America','sector':'Li Mining, Specialty Chemicals, Battery'}
+    ,'LTHM':{'area':'US','sector':'Li Mining, Specialty Chemicals, Battery'}
     ,'TMUS':{'area':'US','sector':'Cellular'}
     ,'MMM':{'area':'US','sector':'Industrial'}
-    ,'LMND':{'area':'US','sector':'Insurance-Tech'}
+    ,'LMND':{'area':'US','sector':'Tech, Insurance'}
     ,'NHI':{'area':'US','sector':'REIT'}
     ,'ULTA':{'area':'US','sector':'Cosmetics'}
-    ,'MELI':{'area':'Latin America','sector':'Virtual Marketplace'}
-    ,'JD':{'area':'China','sector':'Virtual Marketplace'}
+    ,'MELI':{'area':'Latin America','sector':'Virtual Marketplace, Cloud Services'}
+    ,'JD':{'area':'China','sector':'Virtual Marketplace, Cloud Services'}
     ,'CVS':{'area':'US','sector':'Retail Pharmacy'}
-    ,'RDFN':{'area':'US','sector':'Real Estate Tech'}
-    ,'NIO':{'area':'China','sector':'Electric Vehicle, High End'}
+    ,'RDFN':{'area':'US','sector':'Tech, Real Estate '}
+    ,'NIO':{'area':'China','sector':'Electric Vehicle'}
     ,'BABA':{'area':'China','sector':'Virtual Marketplace, Cloud Services'}
-    ,'JMIA':{'area':'Africa','sector':'Virtual Marketplace'}
-    ,'SE':{'area':'Southeast Asia','sector':'Virtual Marketplace'}
+    ,'JMIA':{'area':'Africa','sector':'Virtual Marketplace, Cloud Services'}
+    ,'SE':{'area':'Southeast Asia','sector':'Virtual Marketplace, Cloud Services'}
     ,'eth':{'area':'Global','sector':'cryptocurrency'}
     ,'btc':{'area':'Global','sector':'cryptocurrency'}
 }
 
+# 'symbol': [(date, cost, shares-bought), (date, cost, shares-bought), ... ]
 investments = {
     'OKTA':[('2020.05.20',250,1.33192)],
     'ADBE':[
-           ('2020.06.05',250,0.6363), 
+           ('2020.06.05',250,0.6363),
            ('2020.06.22',80,0.18239),
            ('2021.01.05',450,0.92652)
            ],
@@ -54,7 +56,7 @@ investments = {
            ('2020.04.04',250,4.39136)
           ],
     'ESTC':[
-           ('2020.04.21',250,4.26913), 
+           ('2020.04.21',250,4.26913),
            ('2020.09.22',500,4.61766)
            ],
     'RDFN':[
@@ -71,7 +73,7 @@ investments = {
     'MMM':[('2020.07.07',200,1.29183)],
     'TMUS':[('2020.07.07',100,0.94518),
             ('2020.07.22',100,0.95302)],
-    'LMND':[('2020.07.29',300,4.34468), 
+    'LMND':[('2020.07.29',300,4.34468),
             ('2020.08.13',500,8.4374),
            ('2020.10.01',500,9.71629)],
     'ULTA':[('2020.08.20',1000,4.6729),
@@ -104,6 +106,7 @@ investments = {
         ,('2021.01.11',407.2,0.38033350)
         ,('2021.01.17',407.2,0.32077372)
         ,('2021.01.25',509,0.37295530)
+        ,('2021.01.31',509,0.38644378)
     ],
     'btc':[('2021.01.02',100,0.00081569)
            ,('2020.12.27',100,0.00370076)
@@ -119,23 +122,25 @@ stock_sales = {
     'T':[{'2020.10.15',2043.72,74.45249}]
 }
 
-
+# x0 - exchange 0
+# x1 - exchange 1
 cryptocurrency = {
     'eth':[
-        ('coinbase','2020.12.31',100,0.1290)
-        ,('coinbase','2020.12.31',-20.87,-0.02818755)
+        ('x0','2020.12.31',100,0.1290)
+        ,('x0','2020.12.31',-20.87,-0.02818755)
         ,('coldstorage','2020.12.31',20.0,0.02818755)
-        ,('paypal','2020.12.31',100,0.1290)
-        ,('paypal','2020.12.27',100,0.14234267)
-        ,('paypal','2020.12.29',500,0.69556507)
-        ,('paypal','2021.01.03',509,0.52263893)
-        ,('paypal','2021.01.05',509,0.46581524)
-        ,('paypal','2021.01.11',407.2,0.38033350)
-        ,('paypal','2021.01.17',407.2,0.32077372)
-        ,('paypal','2021.01.25',509,0.37295530)
+        ,('x1','2020.12.31',100,0.1290)
+        ,('x1','2020.12.27',100,0.14234267)
+        ,('x1','2020.12.29',500,0.69556507)
+        ,('x1','2021.01.03',509,0.52263893)
+        ,('x1','2021.01.05',509,0.46581524)
+        ,('x1','2021.01.11',407.2,0.38033350)
+        ,('x1','2021.01.17',407.2,0.32077372)
+        ,('x1','2021.01.25',509,0.37295530)
+        ,('x1','2021.01.31',509,0.38644378)
     ]
-    ,'btc':[('coinbase','2021.01.02',100,0.00081569)
-           ,('paypal','2020.12.27',100,0.00370076)
-           ,('paypal','2021.01.02',254.50,0.00787682)
+    ,'btc':[('x0','2021.01.02',100,0.00081569)
+           ,('x1','2020.12.27',100,0.00370076)
+           ,('x1','2021.01.02',254.50,0.00787682)
            ]
 }
