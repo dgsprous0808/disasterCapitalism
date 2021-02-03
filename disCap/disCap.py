@@ -4,6 +4,22 @@ import matplotlib
 from datetime import datetime
 import numpy as np
 import pandas as pd
+import urllib
+import json 
+
+def retrieve_current_cryptocoin_price(coin):
+    ''' for cryptocurrency coin, return current price in US Dollars '''
+    current_price = None
+    if coin == 'eth':
+        coin_json = urllib.request.urlopen("https://data.messari.io/api/v1/assets/eth/metrics").read().decode("utf-8")
+    elif coin == 'btc':
+        coin_json = urllib.request.urlopen("https://data.messari.io/api/v1/assets/btc/metrics").read().decode("utf-8")
+    else:
+        coin_json = None
+    coin_json = json.loads(coin_json)
+    current_price = coin_json['data']['market_data']['price_usd']
+    return current_price
+
 
 def get_stock_data(symbol,duration):
     '''
