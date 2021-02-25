@@ -45,6 +45,13 @@ def get_stock_data(symbol,duration):
     df['Daystring'] = list( map( mkdaystr, df.Date ) )
     # df = df[['Date','Company','Close','Volume']]
     return df
+    
+    
+def get_stock_recent_statistics(symbol,duration):
+    df = get_stock_data(symbol,duration)
+    median = np.median( df.close ) 
+    avg = np.median( df.close ) 
+    stdv = np.std( df.close ) 
 
 def add_investments(df,investments,symbol):
     '''
