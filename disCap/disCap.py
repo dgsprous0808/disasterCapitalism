@@ -196,10 +196,13 @@ def investmentsAs_df(investments, specialvalues):
     symbol = []
     datestamp = []
     close = []
+    high = []
 
     for key in keys:
         if key not in specialvalues.keys():
             df = yf.Ticker(key).history('1d')
+            df180 = yf.Ticker(key).history('60d')
+            hgh = max(df180.Close)
         invest_list = investments[key]
         for v in investments[key]:
             keydates.append('{}:{}'.format(key,v[0]))
@@ -210,10 +213,12 @@ def investmentsAs_df(investments, specialvalues):
             if key not in specialvalues.keys():
                 try:
                     close.append( df.Close[0] )
+                    high.append(hgh)
                 except:
                     close.append( v[1] )
             else:
                 close.append( specialvalues[key] )
+                high.append(1500)
 
     dfx = pd.DataFrame.from_dict({
             'keydates':keydates,
@@ -221,7 +226,8 @@ def investmentsAs_df(investments, specialvalues):
             'datestamp':datestamp,
             'invested':invested,
             'shares':shares,
-            'close':close
+            'close':close,
+            'high':high
                             })
     return dfx
 
@@ -252,7 +258,7 @@ def mklab(s1,s2,s3,s4,s5):
 
 def todayValueAs_df(investments_df):
     df0 = investments_df[['symbol','invested','shares']].groupby('symbol').agg('sum').reset_index()
-    df1 = investments_df[['symbol','close','datestamp']].groupby('symbol').agg('min').reset_index()
+    df1 = investments_df[['symbol','close','datestamp','high']].groupby('symbol').agg('min').reset_index()
 
     df2 = df1.merge(df0, how='left', on='symbol')
     df1 = df2.rename(columns={"datestamp": "first_investment"})
@@ -275,11 +281,11 @@ def todayValueAs_df(investments_df):
 
     df2['percentage_value'] = df2['value']/total_value
     df2['percentage_invested'] = df2['invested']/total_value
-    df2['effective_share_price'] = df2['invested']/df2['shares']
+    df2['basis'] = df2['invested']/df2['shares']
 
     fields = ['symbol','investment_count','first_investment',
-                       'last_investment','close','effective_share_price','shares',
+                       'last_investment','close','basis','shares',
                        'invested','value', 'gain',
-                       'percentage_value', 'percentage_invested']
+                       'percentage_value', 'percentage_invested', 'high']
 
     return df2[fields], total_invested, total_value
