@@ -1,0 +1,30 @@
+{
+    "AMD":{"area":"US","sector":"Tech, Semiconductors"},
+    "PYPL":{"area":"US","sector":"Tech, Fintech"},
+    "OKTA":{"area":"US","sector":"Tech, Security"}
+    ,"AMZN":{"area":"US","sector":"Virtual Marketplace, Cloud Services"}
+    ,"APPN":{"area":"US","sector":"Tech, Business Processes"}
+    ,"WORK":{"area":"US","sector":"Tech, Business Communications"}
+    ,"ALB":{"area":"US","sector":"Li Mining, Specialty Chemicals, Battery"}
+    ,"ADBE":{"area":"US","sector":"Tech, Creative"}
+    ,"ESTC":{"area":"US","sector":"Tech, DB"}
+    ,"GOOGL":{"area":"US","sector":"Tech, ecclectic"}
+    ,"SQM":{"area":"Latin America","sector":"Li Mining, Specialty Chemicals, Battery"}
+    ,"LTHM":{"area":"US","sector":"Li Mining, Specialty Chemicals, Battery"}
+    ,"TMUS":{"area":"US","sector":"Cellular"}
+    ,"MMM":{"area":"US","sector":"Industrial"}
+    ,"LMND":{"area":"US","sector":"Tech, Insurance"}
+    ,"NHI":{"area":"US","sector":"REIT"}
+    ,"ULTA":{"area":"US","sector":"Cosmetics"}
+    ,"MELI":{"area":"Latin America","sector":"Virtual Marketplace, Cloud Services"}
+    ,"JD":{"area":"China","sector":"Virtual Marketplace, Cloud Services"}
+    ,"CVS":{"area":"US","sector":"Retail Pharmacy"}
+    ,"RDFN":{"area":"US","sector":"Tech, Real Estate "}
+    ,"NIO":{"area":"China","sector":"Electric Vehicle"}
+    ,"BABA":{"area":"China","sector":"Virtual Marketplace, Cloud Services"}
+    ,"JMIA":{"area":"Africa","sector":"Virtual Marketplace, Cloud Services"}
+    ,"SE":{"area":"Southeast Asia","sector":"Virtual Marketplace, Cloud Services"}
+    ,"ETHUSD":{"area":"Cryptocurrency","sector":"cryptocurrency"}
+    ,"BTCUSD":{"area":"Cryptocurrency","sector":"cryptocurrency"}
+    ,"TSM":{"area":"Taiwan","sector":"Tech, Semiconductors"}
+}
