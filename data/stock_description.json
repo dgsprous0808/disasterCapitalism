@@ -27,4 +27,7 @@
     ,"ETHUSD":{"area":"Cryptocurrency","sector":"cryptocurrency"}
     ,"BTCUSD":{"area":"Cryptocurrency","sector":"cryptocurrency"}
     ,"TSM":{"area":"Taiwan","sector":"Tech, Semiconductors"}
+    ,"CHPT":{"area":"US","sector":"EV charging"}
+    ,"MU":{"area":"US","sector":"Tech, Semiconductors"}
+    ,"RUN":{"area":"US","sector":"Solar"}
 }
