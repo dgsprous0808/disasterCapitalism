@@ -234,6 +234,26 @@ def investmentsAs_df(investments):
     def getage(dt):
         now = datetime.now()
         return (now - dt).days
+    def gettoday_df(dfx):
+        df0 = dfx[['symbol','invested','shares']].groupby('symbol').agg('sum').reset_index()
+        df1 = dfx[['symbol','datestamp']].groupby('symbol').agg('min').reset_index()
+
+        df2 = df1.merge(df0, how='left', on='symbol')
+        df1 = df2.rename(columns={"datestamp": "first_investment"})
+
+        df0 = dfx[['symbol','datestamp']].groupby('symbol').agg('max').reset_index()
+        df0 = df0.rename(columns={"datestamp": "last_investment"})
+
+        df1 = df1.merge(df0, how='left', on='symbol')
+
+        df0 = dfx[['symbol','datestamp']].groupby('symbol').agg('count').reset_index()
+        df0 = df0.rename(columns={"datestamp": "investment_count"})
+
+        df2 = df1.merge(df0, how='left', on='symbol')
+        df2['total_invested'] = df2['invested']
+        
+        return df2
+        
     keys = investments.keys()
     keydates = []
     shares = []
@@ -258,6 +278,11 @@ def investmentsAs_df(investments):
             'shares':shares
                             })
 
+    df2 =  gettoday_df(dfx)
+
+    return dfx, df2
+
+def gettoday_df(dfx):
     df0 = dfx[['symbol','invested','shares']].groupby('symbol').agg('sum').reset_index()
     df1 = dfx[['symbol','datestamp']].groupby('symbol').agg('min').reset_index()
 
@@ -274,9 +299,91 @@ def investmentsAs_df(investments):
 
     df2 = df1.merge(df0, how='left', on='symbol')
     df2['total_invested'] = df2['invested']
+        
+    return df2
+    
+def investmentsAs2_df(investments):
+    def cnvrtdt(datestring):
+        return datetime.strptime(datestring, "%Y.%m.%d")
+    def getage(dt):
+        now = datetime.now()
+        return (now - dt).days
 
-    return dfx, df2
+    keys = investments.keys()
+    keydates = []
+    shares = []
+    account = []
+    comment = []
+    invested = []
+    symbol = []
+    datestamp = []
 
+    for key in keys:
+        invest_list = investments[key]
+        for v in investments[key]:
+            keydates.append('{}:{}'.format(key,v[0]))
+            datestamp.append(v[0])
+            invested.append(v[1])
+            shares.append(v[2])
+            account.append(v[3])
+            comment.append(v[4])
+            symbol.append(key)
+
+    dfx = pd.DataFrame.from_dict({
+            'keydates':keydates,
+            'symbol':symbol,
+            'datestamp':datestamp,
+            'invested':invested,
+            'shares':shares,
+            'account':account,
+            'comment':comment
+                            })
+
+    df2 =  gettoday_df(dfx)
+    
+    dfx['basis'] = dfx['invested']/dfx['shares']
+    df2['basis'] = df2['total_invested']/df2['shares']
+    
+    dfn = dfx
+    dfn.loc[dfn.comment == 'DividendRepurchase', 'invested'] = 0
+    df3 = gettoday_df(dfn)
+    df3['basis'] = df3['total_invested']/df3['shares']
+
+    return dfx, df2, df3, dfn
+
+
+def investmentsAs3_df(investments):
+    keys = investments.keys()
+    keydates = []
+    shares = []
+    account = []
+    comment = []
+    invested = []
+    symbol = []
+    datestamp = []
+
+    for key in keys:
+        invest_list = investments[key]
+        for v in investments[key]:
+            keydates.append('{}:{}'.format(key,v[0]))
+            datestamp.append(v[0])
+            invested.append(v[1])
+            shares.append(v[2])
+            account.append(v[3])
+            comment.append(v[4])
+            symbol.append(key)
+
+    dfx = pd.DataFrame.from_dict({
+            'keydates':keydates,
+            'symbol':symbol,
+            'datestamp':datestamp,
+            'invested':invested,
+            'shares':shares,
+            'account':account,
+            'comment':comment
+                            })
+
+    return dfx
 
 def stockDescriptionAs_df(sd):
     keys = sd.keys()

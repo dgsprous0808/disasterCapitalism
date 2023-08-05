@@ -1,0 +1,23 @@
+{
+    "ABNB":{"area":"US","sector":"Virtual Marketplace"}
+    ,"ALB":{"area":"US","sector":"Li Mining, Specialty Chemicals, Battery"}
+    ,"AMZN":{"area":"US","sector":"Virtual Marketplace, Cloud Services"}
+	,"ARCC": {"area":"US","sector":"Fintech"}
+	,"ASML":{"area":"EU","sector":"Tech, Semiconductors"}
+    ,"BHP": {"area":"AUS","sector":"Li Mining, Specialty Chemicals, Battery"}
+	,"BRK-B":{"area":"US","sector":"Civilization"}
+    ,"KRP":{"area":"US","sector":"Petroleum, Natural Gas"}
+	,"NU":{"area":"Latin America","sector":"Fintech"}
+    ,"LTHM":{"area":"US","sector":"Li Mining, Specialty Chemicals, Battery"}
+    ,"MELI":{"area":"Latin America","sector":"Virtual Marketplace, Cloud Services"}
+	,"MP":{"area":"US","sector":"Li Mining, Specialty Chemicals, Battery"}
+	,"NVDA":{"area":"US","sector":"Tech, Semiconductors"}
+	,"RIO":{"area":"AUS","sector":"Li Mining, Specialty Chemicals, Battery"}
+    ,"SCCO":{"area":"US","sector":"Mining, E-transtion, copper"}
+    ,"SE":{"area":"Southeast Asia","sector":"Virtual Marketplace, Cloud Services"}
+	,"SNOW":{"area":"US","sector":"Technology"}
+    ,"SQM":{"area":"Latin America","sector":"Li Mining, Specialty Chemicals, Battery"}
+    ,"TSM":{"area":"Taiwan","sector":"Tech, Semiconductors"}
+    ,"TXN":{"area":"US","sector":"Tech, Semiconductors"}
+    ,"ULTA":{"area":"US","sector":"Cosmetics"}
+}
